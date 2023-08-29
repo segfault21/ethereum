@@ -22,40 +22,40 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Описание / Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Cron-job сервис, получающий раз в минуту информацию о транзакциях в последних 100 блоках, полученных по api Etherscan.
+Api сервис, возвращающий адрес с наибольшим изменением баланса за последние 100 блоков.
 
-## Installation
+Cronjob service that receives once a minute information about transactions in the last 100 blocks received via the Etherscan api.
+Api service that returns the address with the largest balance change over the last 100 blocks.
 
+## Подготовка / Preparing
+Укажите ваш apikey в .env / set up your Etherscan ApiKey in .env file
 ```bash
+#устанавливаем зависимости / install dependencies
 $ yarn install
+#поднимаем postgres в докере / set up postgres with docker compose
+$ docker compose up -d
+#деплоим миграции / migrations deploy
+$ yarn prisma migrate deploy
+#генерируем из схемы призмы / generating schema.prisma
+$ yarn prisma generate
+#если надо UI призмы / if you need UI for Prisma
+$ yarn prisma studio
 ```
 
-## Running the app
+## Запуск / Running the app
 
 ```bash
 # development
-$ yarn run start
+$ yarn start
 
 # watch mode
-$ yarn run start:dev
+$ yarn start:dev
 
 # production mode
-$ yarn run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
+$ yarn start:prod
 ```
 
 ## Support
