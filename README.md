@@ -30,6 +30,7 @@ Api сервис, возвращающий адрес с наибольшим и
 Cronjob service that receives once a minute information about transactions in the last 100 blocks received via the Etherscan api.
 Api service that returns the address with the largest balance change over the last 100 blocks.
 
+Api request: http://localhost:3001/address (use PORT variable from .env)
 ## Подготовка / Preparing
 Укажите ваш apikey в .env / set up your Etherscan ApiKey in .env file
 ```bash
