@@ -42,8 +42,6 @@ export class CronService {
   }
   async upsertTransactions(data: Transaction[], blockId) {
     for (const t of data) {
-      console.log(t.hash);
-      console.log(t.blockNumber);
       const transaction: Transaction = await this.prisma.transaction.findUnique(
         {
           where: {
@@ -61,8 +59,6 @@ export class CronService {
       `/api?module=proxy&action=eth_getBlockByNumber&tag=${blockNumber}&boolean=true`,
       { params: { apikey: this.apiKey } },
     );
-    // const info: Transaction[] = block.data.result.transactions;
-    // await this.upsertTransactions(info);
     let block = await this.prisma.block.findUnique({
       where: {
         blockNumber: blockNumber,
@@ -77,8 +73,6 @@ export class CronService {
     }
     const info: Transaction[] = blockInfo.data.result.transactions;
     await this.upsertTransactions(info, block.id);
-    // const info: Transaction[] = block.data.result.transactions;
-    // await this.upsertTransactions(info);
   }
   async startJob() {
     const lastBlockInfo = await this.axios.get(
@@ -95,7 +89,6 @@ export class CronService {
   }
   @Cron(CronExpression.EVERY_MINUTE)
   async runEveryMinute() {
-    console.log('hello')
-    //await this.startJob();
+    await this.startJob();
   }
 }
