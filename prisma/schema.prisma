@@ -10,20 +10,28 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Block {
+  id           Int           @id @default(autoincrement())
+  blockNumber  String        @unique
+  transactions Transaction[]
+}
+
 model Transaction {
-    blockHash           String
-    blockNumber         String
-    from                String
-    gas                 String
-    gasPrice            String
-    hash                String
-    input               String
-    nonce               String
-    to                  String
-    transactionIndex    String  @unique
-    value               String
-    type                String
-    v                   String
-    r                   String
-    s                   String
+  blockHash        String
+  blockNumber      String
+  from             String
+  gas              String
+  gasPrice         String
+  hash             String  @unique
+  input            String
+  nonce            String
+  to               String?
+  transactionIndex String
+  value            String
+  type             String
+  v                String
+  r                String
+  s                String
+  Block            Block?  @relation(fields: [blockId], references: [id])
+  blockId          Int?
 }
